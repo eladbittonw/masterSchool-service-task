@@ -33,38 +33,36 @@ $ yarn run test
 
 ## Api endpoints
 
+This endpoint create a new user
+return: userid
 ```bash
 Post -
 http://127.0.0.1:<Port>/progress/createUser
 ```
 
-This endpoint create a new user
-return: userid
-
+This endpoint gets the current progress of a user (current step + current task)
+return: currentStep, currentTask
 ```bash
 Get -
 http://127.0.0.1:<Port>/progress/getUserProgress/<userId>/current
 ```
 
-This endpoint gets the current progress of a user (current step + current task)
-return: currentStep, currentTask
-
+This endpoint gets the current status of a user (accepted, rejected, or still in progress)
+return: accepted || rejected || still in progress
 ```bash
 Get -
 http://127.0.0.1:<Port>/progress/getUserStatus/<userId>/current
 ```
 
-This endpoint gets the current status of a user (accepted, rejected, or still in progress)
-return: accepted || rejected || still in progress
-
+This endpoint gets the full structure of the process flow and the number of steps and tasks
+return: fullProcessDisplay, totalStepsNumber, totalTasksNumber
 ```bash
 Get -
 http://127.0.0.1:<Port>/process/
 ```
 
-This endpoint gets the full structure of the process flow and the number of steps and tasks
-return: fullProcessDisplay, totalStepsNumber, totalTasksNumber
-
+This endpoint tries to complete a task with a payload.
+return: nextStep, nextTask | error (if the task wasn't completed) | "accepted" | "rejected"
 ```bash
 Put -
 http://127.0.0.1:<Port>/progress/<userId>/complete/<stepName>
@@ -73,8 +71,6 @@ Body -
 stepPayload: {<stepPayload>}
 ```
 
-This endpoint tries to complete a task with a payload.
-return: nextStep, nextTask | error (if the task wasn't completed) | "accepted" | "rejected"
 
 ## Notes
 
