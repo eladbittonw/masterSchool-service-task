@@ -31,6 +31,7 @@ export class UsersService {
     return newId;
   }
 
+  // Check if the user exist in the memory
   getUserId(userId: string) {
     return this.users.get(userId).id;
   }

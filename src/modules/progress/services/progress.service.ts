@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import {
-  ProgressStatusInterface,
+  ProgressStatusType,
   UserProgressInterface,
   userStatusType,
 } from '../interfaces/user-progress.interface';
@@ -37,7 +37,9 @@ export class ProgressService {
 
   // Find a user in the map to validate
   findUser(userId: string): boolean {
+    // Gets the user from the Map
     const currentUser = this.usersProgress.get(userId);
+    // Check if the user not null
     if (currentUser) {
       return true;
     }
@@ -45,7 +47,7 @@ export class ProgressService {
   }
 
   // Gets the user progress (current step and current task )
-  getUserProgress(userId: string): ProgressStatusInterface {
+  getUserProgress(userId: string): ProgressStatusType {
     // Get the user by id
     const currentUser = this.usersProgress.get(userId);
     // Get the user current step
@@ -61,7 +63,7 @@ export class ProgressService {
     // Gets the user status at this current state
     const currentUserStatus: userStatusType =
       this.usersProgress.get(userId).status;
-
+    // Return the user Status
     return currentUserStatus;
   }
 
@@ -73,19 +75,22 @@ export class ProgressService {
     userId: string;
     userStatus: userStatusType;
   }) {
+    // Gets the user current object
     const currentUserStatus = this.usersProgress.get(userId);
+    // Spread the user object and sets a new status
     const updatedProgress: UserProgressInterface = {
       ...currentUserStatus,
       status: userStatus,
     };
-
+    //sets a new status
     this.usersProgress.set(userId, updatedProgress);
   }
 
   // Validate the step name
   validateStep(stepName: string, userId: string): boolean {
+    // Gets current user
     const currentUserProgress = this.usersProgress.get(userId);
-
+    // Check if the current step is the step that is in the request
     if (stepName !== currentUserProgress.currentStep) {
       logger.error('User step incorrect!');
       return false;
@@ -95,21 +100,23 @@ export class ProgressService {
 
   // Gets the user current name task
   getUserCurrentTask(userId: string): string {
+    // Gets current user
     const currentUser = this.usersProgress.get(userId);
-
+    // Returns current task name
     return currentUser.currentTask;
   }
 
   // Sets the progress of a user after completing a task
   setNextProgress({ userId, nextStep, nextTask }) {
+    // Gets the current user
     const currentUser = this.usersProgress.get(userId);
-
+    // Update the currentStep and currentTask
     const updatedProgress: UserProgressInterface = {
       ...currentUser,
       currentStep: nextStep,
       currentTask: nextTask,
     };
-
+    // Update the data
     this.usersProgress.set(userId, updatedProgress);
   }
 }

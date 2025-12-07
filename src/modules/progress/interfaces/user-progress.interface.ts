@@ -1,5 +1,7 @@
+// User status Type
 type userStatusType = 'accepted' | 'rejected' | 'still in progress';
 
+// Users progress Interface
 interface UserProgressInterface {
   userID: string;
   processVersion: number;
@@ -8,12 +10,13 @@ interface UserProgressInterface {
   status: userStatusType;
 }
 
-type ProgressStatusInterface = {
+//
+type ProgressStatusType = {
   currentStep: string;
   currentTask: string;
 };
 
-type UserStatusResponseInterface = {
+type UserStatusResponseType = {
   response: { currentUserStatus: userStatusType };
 };
 
@@ -23,10 +26,16 @@ type NextProgressResponseType = {
   finish: boolean;
 };
 
+type NestStepResponseType = {
+  nextStep: string;
+  nextTask: string;
+};
+
 export {
   UserProgressInterface,
-  ProgressStatusInterface,
+  ProgressStatusType,
   userStatusType,
   NextProgressResponseType,
-  UserStatusResponseInterface,
+  UserStatusResponseType,
+  NestStepResponseType,
 };

@@ -47,19 +47,10 @@ class IQTestDto {
   timestamp: Date;
 }
 class SecondIQTestDto {
-  @IsString()
-  @IsNotEmpty()
-  userId: string;
-
   @IsNumber()
   @Min(0)
   @Max(100)
   score: number;
-
-  @IsNumber()
-  @Min(0)
-  @Max(100)
-  secondScore: number;
 
   @IsNotEmpty()
   @IsDate()

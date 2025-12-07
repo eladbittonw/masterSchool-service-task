@@ -1,16 +1,29 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ProcessService } from '../services/process.service';
+import {
+  DisplayStep,
+  FullProcessType,
+  Step,
+} from '../interfaces/process.interface';
 
 @Controller('process')
 export class ProcessController {
   constructor(@Inject() private processService: ProcessService) {}
 
+  // Gets the full process flow
   @Get()
-  getFullProcess() {
-    const fullProcessDisplay = this.processService.getProcess();
-    const totalStepsNumber = this.processService.getTotalSteps();
-    const totalTasksNumber = this.processService.getTotalVisibleTasks();
+  getFullProcess(): FullProcessType {
+    // Gets the full process to display
+    const fullProcessDisplay: DisplayStep[] = this.processService.getProcess();
 
-    return { fullProcessDisplay, totalStepsNumber, totalTasksNumber };
+    //Gets the total steps number
+    const totalStepsNumber: number = this.processService.getTotalSteps();
+
+    // Gets the total tasks number
+    const totalTasksNumber: number = this.processService.getTotalVisibleTasks();
+
+    return {
+      response: { fullProcessDisplay, totalStepsNumber, totalTasksNumber },
+    };
   }
 }

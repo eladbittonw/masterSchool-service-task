@@ -17,8 +17,7 @@ export class UserStatusGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
 
     // Gets the user id from the data
-    const userId =
-      request.params.id || request.body.userId || request.query.userId;
+    const userId = request.params.id;
 
     // Checks if the user id is not null
     if (!userId) {
