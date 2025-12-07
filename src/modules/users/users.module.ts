@@ -4,5 +4,6 @@ import { ProgressModule } from '../progress/progress.module';
 
 @Module({
   providers: [UsersService],
+  exports: [UsersService],
 })
 export class UsersModule {}

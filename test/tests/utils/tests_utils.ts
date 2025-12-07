@@ -46,7 +46,6 @@ export async function completeTask({
   // Gets the current progress of the user
   const currentProgress: ProgressStatusType =
     progressService.getUserProgress(userId);
-  console.log('currentProgress = ', currentProgress);
   // Gets the current status of the user
   const currentStatus: string =
     controller.getUserProgressStatus(userId).response.currentUserStatus;

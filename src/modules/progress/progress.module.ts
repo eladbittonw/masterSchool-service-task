@@ -9,6 +9,6 @@ import { UsersModule } from '../users/users.module';
 @Module({
   imports: [ProcessModule, UsersModule],
   controllers: [ProgressController],
-  providers: [ProgressService, UserStatusGuard, UsersService],
+  providers: [ProgressService, UserStatusGuard],
 })
 export class ProgressModule {}

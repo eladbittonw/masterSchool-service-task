@@ -10,11 +10,7 @@ import {
 import { logger } from '../../../../utils/logger/logger';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import {
-  NextProgressResponseType,
-  ProgressStatusType,
-} from '../../progress/interfaces/user-progress.interface';
-import { takeLast } from 'rxjs';
+import { NextProgressResponseType } from '../../progress/interfaces/user-progress.interface';
 
 @Injectable()
 export class ProcessService {
@@ -146,11 +142,6 @@ export class ProcessService {
           ? nextStep.isVisible(taskPayload)
           : nextStep.isVisible;
 
-      console.log(
-        'Is next task is visable: ',
-        isNextTaskVisible,
-        ', task payload = ' + taskPayload,
-      );
       // If the task is visible move to her
       if (isNextTaskVisible) {
         // Move to next task in same step

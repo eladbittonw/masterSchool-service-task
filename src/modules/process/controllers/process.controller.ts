@@ -1,10 +1,6 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ProcessService } from '../services/process.service';
-import {
-  DisplayStep,
-  FullProcessType,
-  Step,
-} from '../interfaces/process.interface';
+import { DisplayStep, FullProcessType } from '../interfaces/process.interface';
 
 @Controller('process')
 export class ProcessController {
